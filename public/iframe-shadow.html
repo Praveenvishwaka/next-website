@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Iframe with Shadow DOM</title>
+  <style>body { font-family: system-ui, sans-serif; padding: 1rem; background: #ecfdf5; }</style>
+</head>
+<body>
+  <h2>Iframe containing Shadow DOM</h2>
+  <div id="shadow-host" data-testid="iframe-shadow-host"></div>
+  <script>
+    const host = document.getElementById('shadow-host');
+    const shadow = host.attachShadow({ mode: 'open' });
+    shadow.innerHTML = `
+      <style>
+        .inner { padding: 1rem; background: #d1fae5; border-radius: 8px; }
+        button { padding: 0.5rem 1rem; margin-top: 0.5rem; }
+        input { display: block; margin-top: 0.5rem; padding: 0.5rem; width: 100%; box-sizing: border-box; }
+      </style>
+      <div class="inner" data-testid="shadow-inner">
+        <p data-testid="shadow-text">Shadow DOM inside iframe</p>
+        <input type="text" data-testid="shadow-input" placeholder="Shadow input in iframe" />
+        <button type="button" data-testid="shadow-button">Shadow Button</button>
+      </div>
+    `;
+  </script>
+</body>
+</html>
